@@ -1,0 +1,10 @@
+ssh/id_dsa
+irssi/away.log
+
+.DS_Store
+*.pyc
+.netrwhist
+*.swp
+*.swo
+*.un~
+vim/tmp

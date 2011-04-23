@@ -1,0 +1,26 @@
+[ui]
+username = Stas Malolepszy <stas@mozilla.com>
+merge = 
+
+[extensions]
+hgext.graphlog = 
+color =
+pager =
+transplant =
+rebase =
+eol =
+hgattic = ~/src/hgattic/attic.py
+hgext.bookmarks =
+hggit = 
+
+hgext.imerge = !
+hgext.inotify = !
+
+[diff]
+git = 1
+
+[defaults]
+diff=-p -U 8
+
+[pager]
+pager = LESS='FSRX' less

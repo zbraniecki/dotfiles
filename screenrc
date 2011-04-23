@@ -1,0 +1,8 @@
+defscrollback 5000
+startup_message off
+altscreen
+hardstatus alwayslastline "%{= Kw}%?%-Lw%?%{+b Kw}%n*%f %t%?%{= Kw}%+Lw%?"
+
+# Toggle fullscreen
+bind f eval "hardstatus ignore"
+bind F eval "hardstatus alwayslastline"

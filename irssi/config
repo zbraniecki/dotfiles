@@ -1,0 +1,513 @@
+chatnets = {
+  mozilla = {
+    type = "IRC";
+    nick = "stas";
+    autosendcmd = "/script exec $ENV{'TZ'}='CET'";
+  };
+  freenode = {
+    type = "IRC";
+    nick = "sta";
+    autosendcmd = "/script exec $ENV{'TZ'}='CET'";
+  };
+};
+
+servers = (
+  {
+    address = "irc.mozilla.org";
+    chatnet = "mozilla";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    autoconnect = "yes";
+  }
+);
+
+channels = (
+  { name = "#l10n-drivers"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#l10n"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#verbatim"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#aviarypl"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#frenchmoz"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#europe"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#mozilla-hispano"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#mozilla.in"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#elmo"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#l20n"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#sumodev"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#webdev"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#mdn"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#fx4demos"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#markup"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#spark"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#webifyme"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#twitterparty"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#labs"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#raindrop"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#tabcandy"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#jetpack"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#games"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#planning"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#bmo"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#starcraft"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#minecraft"; chatnet = "mozilla"; autojoin = "Yes"; },
+  { name = "#ret"; chatnet = "freenode"; autojoin = "Yes"; }
+);
+
+aliases = {
+  J = "join -window";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  QW = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "nick stas|mtg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say MacIrssi 0.8.6.6 (Core: irssi 0.8.14) - http://www.sysctl.co.uk/projects/macirssi/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  q = "query";
+  a = "nick stas|away; away I'm AFK";
+  b = "nick stas; away";
+  s = "nick stas";
+};
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if its argument isnt
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isnt empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    time = "{sb $Z}";
+    user = "{sb $cumode$N{sbmode $usermode}{sbaway $A}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    window = "{sb $winref:$T{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]T}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = " Irssi v$J - http://irssi.org/help/";
+
+    # all of these treated specially, theyre only displayed when needed
+    lag = "{sb Lag: $0-}";
+    act = "{sb Act: $0-}";
+    more = "-- more --";
+  };
+
+  # theres two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+      disabled = "no";
+
+      # window, root
+      type = "window";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "1";
+      # active, inactive, always
+      visible = "active";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # we treat input line as yet another statusbar :) Its possible to
+    # add other items before or after the input line item.
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      # we want to be at the bottom always
+      position = "100";
+      visible = "always";
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        # treated specially, this is the real input line.
+        input = { priority = "10"; };
+      };
+    };
+
+    # topicbar
+    topic = {
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        barstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_2 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_2 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+settings = {
+  core = {
+    real_name = "Stas Malolepszy";
+    user_name = "stas";
+    nick = "stas";
+    recode_autodetect_utf8 = "yes";
+    recode_fallback = "UTF-8";
+    recode_out_default_charset = "UTF-8";
+    recode_transliterate = "yes";
+
+
+  };
+  "fe-common/core" = {
+    autolog = "yes";
+    autolog_path = "~/.irclogs/$tag/$0-%m%y.log";
+    show_nickmode_empty = "yes";
+    #theme = "ash";
+    term_charset = "utf-8";
+    bell_beeps = "yes";
+    beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+    print_active_channel = "yes";
+  };
+  "fe-text" = {
+    colors = "yes";
+    autostick_split_windows = "yes";
+    actlist_sort = "refnum";
+  };
+  "perl/core/scripts" = {
+    awl_display_key = "$Q-%n$H$C$S";
+    awl_block = "-12";
+    awl_prefer_name = "yes";
+  };
+};
+logs = { };
+ignores = ( );
+keyboard = (
+  { key = "meta-1"; id = "change_window"; data = "1"; },
+  { key = "meta-2"; id = "change_window"; data = "2"; },
+  { key = "meta-3"; id = "change_window"; data = "3"; },
+  { key = "meta-4"; id = "change_window"; data = "4"; },
+  { key = "meta-5"; id = "change_window"; data = "5"; },
+  { key = "meta-6"; id = "change_window"; data = "6"; },
+  { key = "meta-7"; id = "change_window"; data = "7"; },
+  { key = "meta-8"; id = "change_window"; data = "8"; },
+  { key = "meta-9"; id = "change_window"; data = "9"; },
+  { key = "meta-0"; id = "change_window"; data = "10"; }
+);
+
+
+notifies = { gandalf = { }; ani = { }; Pike = { }; sethb = { }; };
+hilights = ( { text = "stas"; nick = "yes"; word = "yes"; } );
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = {
+    name = "drivers";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#l10n-drivers";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#elmo";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#l20n";
+        tag = "mozilla";
+      }
+    );
+  };
+  3 = {
+    name = "l10n";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#l10n";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#verbatim";
+        tag = "mozilla";
+      }
+    );
+  };
+  4 = {
+    name = "local";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#aviarypl";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#frenchmoz";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#europe";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#mozilla-hispano";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#mozilla.in";
+        tag = "mozilla";
+      }
+    );
+  };
+  5 = {
+    name = "webdev";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#sumodev";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#webdev";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#mdn";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#fx4demos";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#markup";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitterparty";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#webifyme";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#spark";
+        tag = "mozilla";
+      }
+    );
+  };
+  6 = {
+    name = "labs";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#labs";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#raindrop";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#tabcandy";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#jetpack";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#games";
+        tag = "mozilla";
+      }
+    );
+  };
+  7 = { name = "hilight"; sticky = "yes"; };
+  8 = {
+    name = "fun";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#starcraft";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#minecraft";
+        tag = "mozilla";
+      }
+    );
+  };
+  9 = {
+    name = "freenode";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#ret";
+        tag = "freenode";
+      }
+    );
+  };
+  10 = {
+    name = "firehose";
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#planning";
+        tag = "mozilla";
+      },
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#bmo";
+        tag = "mozilla";
+      }
+    );
+  };
+  11 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "gandalf";
+        tag = "mozilla";
+      }
+    );
+  };
+};
+mainwindows = {
+  3 = { first_line = "5"; lines = "28"; };
+  7 = { first_line = "1"; lines = "4"; };
+};
