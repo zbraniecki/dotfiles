@@ -62,9 +62,9 @@ alias la='ls -A'
 alias l='ls -CF'
 
 if [ `which tmux` ]; then
-    alias s='tmux attach -d -t'
-    alias ss='tmux ls'
-    alias sn='tmux new -s'
+    alias s='tmux -2 attach -d -t'
+    alias ss='tmux -2 ls'
+    alias sn='tmux -2 new -s'
 else
     alias s='screen -dRU'
     alias ss='screen -ls'
