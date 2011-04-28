@@ -79,6 +79,7 @@ function purge {
 # additional scripts =================================================
 source ~/.extra/bash_completion_tmux.sh
 source ~/.extra/git-completion.bash
+source ~/.extra/git-flow-completion.bash
 
 # extras =============================================================
 complete -cf sudo
