@@ -3,7 +3,6 @@
 export LANG='en_US.UTF-8'
 
 # exports =============================================================
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
 export EDITOR=vim
 export PYTHONSTARTUP=~/.pythonrc.py
 
@@ -79,6 +78,13 @@ function purge {
 
 # additional scripts =================================================
 source ~/.extra/bash_completion_tmux.sh
+source ~/.extra/git-completion.bash
 
 # extras =============================================================
 complete -cf sudo
+
+# git completion =====================================================
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
