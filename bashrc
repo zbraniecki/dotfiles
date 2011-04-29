@@ -72,6 +72,8 @@ fi
 alias v='vim -p'
 alias crontab="VIM_CRONTAB=true crontab"
 
+alias pmo='pastebinit.py -u stas '
+
 function purge {
     find . -name $1 -exec rm {} \;
 }
