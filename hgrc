@@ -9,9 +9,7 @@ pager =
 transplant =
 rebase =
 eol =
-hgattic = ~/src/hgattic/attic.py
 hgext.bookmarks =
-hggit = 
 
 hgext.imerge = !
 hgext.inotify = !
