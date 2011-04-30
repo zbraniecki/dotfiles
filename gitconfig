@@ -30,6 +30,8 @@
     co = checkout
     df = diff
     lg = log -p
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    l = log --graph --decorate --abbrev-commit --pretty=oneline
+    ll = log --graph --decorate --abbrev-commit --pretty=oneline --all
+    lll = log --graph --decorate --abbrev-commit
+    llll = log --graph --decorate --abbrev-commit --all
     ls = ls-files
