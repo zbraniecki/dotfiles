@@ -2,6 +2,8 @@
 username = Zbigniew Braniecki <gandalf@mozilla.com>
 merge = diffmerge
 editor = mvim --remote-tab-wait
+ignore = ~/.local/hgignore
+
 
 [extensions]
 hgext.graphlog =

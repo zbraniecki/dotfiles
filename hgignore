@@ -2,9 +2,6 @@ syntax: glob
 
 .DS_Store
 *.pyc
-.netrwhist
 *.swp
 *.swo
-tags
 *.un~
-vim/tmp
