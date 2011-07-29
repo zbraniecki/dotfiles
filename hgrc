@@ -1,24 +1,41 @@
 [ui]
-username = Stas Malolepszy <stas@mozilla.com>
-merge = 
+username = Zbigniew Braniecki <gandalf@mozilla.com>
+merge = diffmerge
+editor = mvim --remote-tab-wait
 
 [extensions]
-hgext.graphlog = 
+hgext.graphlog =
+hgext.extdiff =  
 color =
+mq =
+progress =
 pager =
 transplant =
 rebase =
 eol =
 hgext.bookmarks =
-
 hgext.imerge = !
 hgext.inotify = !
 
 [diff]
 git = 1
+showfunc = 1
+unified = 8
 
 [defaults]
 diff=-p -U 8
+commit = -v
+
+[extdiff]
+cmd.diffmerge = /usr/bin/diffmerge.sh
+
+[merge-tools]
+diffmerge.executable = /usr/bin/diffmerge.sh
+diffmerge.args = --result=$output -t1="Local Version" -t2=$output -t3="Other Version" --caption=$output $local $base $other
+diffmerge.binary = False
+diffmerge.symlinks = False
+diffmerge.gui = True
+diffmerge.premerge = True
 
 [pager]
 pager = LESS='FSRX' less

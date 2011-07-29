@@ -1,9 +1,9 @@
 [user]
-    name = Stas Malolepszy
-    email = stas@mozilla.com
+    name = Zbigniew Braniecki
+    email = gandalf@mozilla.com
 
 [core]
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/.local/gitignore_global
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color]
