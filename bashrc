@@ -5,9 +5,9 @@ export LANG='en_US.UTF-8'
 
 # exports =============================================================
 export EDITOR=vim
-export PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONSTARTUP=~/.local/pythonrc.py
 
-export PATH="$PATH:/usr/local/bin"
+export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
 
 if [ -d $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH

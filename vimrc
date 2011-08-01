@@ -107,12 +107,12 @@ nnoremap <leader>v V`]
 
 " Directories *****************************************************************
 " Setup backup location and enable
-set backupdir=~/.bkp/vim
+set backupdir=~/.local/bkp/vim
 set backup
 set undofile
 
 " Set Swap directory
-set directory=~/.bkp/vim/swap
+set directory=~/.local/bkp/vim/swap
 
 " Misc ************************************************************************
 set backspace=indent,eol,start
