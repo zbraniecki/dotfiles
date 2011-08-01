@@ -5,24 +5,43 @@ if [ -z $1 ]; then
     exit 99
 fi
 
+# Create required directories
+mkdir -p ~/.local/bin
+mkdir -p ~/.local/bkp/vim/swap
+
+
 # Symlink the config files in ~/
 configs=`pwd $1`
 for i in `ls -1 $configs`; do
-    if [[ $i == "install.sh" ||
-          $i == bashrc ||
-          $i == profile ]]; then
+    if [[ $i == "install.sh" ]]; then
         continue
     fi
-    dotfile=$HOME/.$i
-    if [ ! -e $dotfile ]; then
-        ln -s $configs/$i $dotfile
-        echo "$dotfile created"
-    else
-        echo "$dotfile already exists"
+    if [[ $i == bashrc ||
+          $i == profile ||
+          $i == vimrc ||
+          $i == vim ||
+          $i == hgrc ||
+          $i == gitconfig ]]; then
+        dotfile=$HOME/.$i
+	if [ ! -e $dotfile ]; then
+	    ln -s $configs/$i $dotfile
+	    echo "$dotfile created"
+	else
+	    echo "$dotfile already exists"
+	fi
     fi
-done 
+    if [[ $i == extra ||
+          $i == gitignore_global ||
+          $i == hgignore ]]; then
+        dotfile=$HOME/.local/$i
+	if [ ! -e $dotfile ]; then
+	    ln -s $configs/$i $dotfile
+	    echo "$dotfile created"
+	else
+	    echo "$dotfile already exists"
+	fi
+    fi
+done
+ 
+ln -s $configs/ssh/* $HOME/.ssh/
 
-# Create required directories
-mkdir -p ~/src
-mkdir -p ~/.bkp/vim/swap
-mkdir -p ~/.irclogs
