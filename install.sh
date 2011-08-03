@@ -7,6 +7,7 @@ fi
 
 # Create required directories
 mkdir -p ~/.local/bin
+mkdir -p ~/.local/env
 mkdir -p ~/.local/bkp/vim/swap
 
 

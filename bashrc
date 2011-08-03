@@ -7,15 +7,21 @@ export LANG='en_US.UTF-8'
 export EDITOR=vim
 export PYTHONSTARTUP=~/.local/pythonrc.py
 
-export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 
 if [ -d $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH
 fi
 
+if [ -d $HOME/.local/env ]; then
+    export WORKON_HOME=~/.local/env
+    source_if_exists /usr/local/bin/virtualenvwrapper.sh
+fi
+
 # aliases =============================================================
 alias ls='ls -G'
 alias grep='grep --color=auto'
+alias mkve="mkvirtualenv --no-site-packages" 
 
 # additional scripts =================================================
 source ~/.local/extra/git-completion.bash
