@@ -4,3 +4,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00;33m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
+
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
