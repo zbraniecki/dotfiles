@@ -1,2 +1,9 @@
 Host hg.mozilla.org
-User zbraniecki@mozilla.com
+    User zbraniecki@mozilla.com
+    Compression yes
+    ServerAliveInterval 300
+
+Host *.mozilla.com
+    User zbraniecki
+    Compression yes
+    ServerAliveInterval 300
