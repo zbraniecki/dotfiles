@@ -7,7 +7,7 @@ export LANG='en_US.UTF-8'
 export EDITOR=vim
 export PYTHONSTARTUP=~/.local/pythonrc.py
 
-export PATH="$HOME/.local/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+
 
 if [ -d $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH
