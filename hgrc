@@ -3,7 +3,7 @@ username = Zbigniew Braniecki <gandalf@mozilla.com>
 merge = diffmerge
 editor = mvim --remote-tab-wait
 ignore = ~/.local/hgignore
-
+merge = vimdiff
 
 [extensions]
 hgext.graphlog =
@@ -32,12 +32,8 @@ commit = -v
 cmd.diffmerge = /usr/bin/diffmerge.sh
 
 [merge-tools]
-diffmerge.executable = /usr/bin/diffmerge.sh
-diffmerge.args = --result=$output -t1="Local Version" -t2=$output -t3="Other Version" --caption=$output $local $base $other
-diffmerge.binary = False
-diffmerge.symlinks = False
-diffmerge.gui = True
-diffmerge.premerge = True
+vimdiff.executable = vim
+vimdiff.args = -d $base $local $output $other +close +close
 
 [pager]
 pager = LESS='FSRX' less
