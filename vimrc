@@ -1,3 +1,6 @@
+call pathogen#infect()
+set laststatus=2 
+
 set nocompatible
 let mapleader = ","
 
@@ -16,7 +19,6 @@ endif
 
 syntax on
 set number
-set relativenumber
 set splitbelow splitright
 set cursorline
 set showcmd
@@ -177,3 +179,8 @@ endif
 " Filetype-specific ***********************************************************
 au BufRead sup.* set ft=mail
 au BufRead sup.* call Toggle_text_editing()
+
+nmap SSA :wa<CR>:mksession! ~/.vim/sessions/
+nmap SO :wa<CR>:so ~/.vim/sessions/
+
+au FileType javascript setl ts=2 et sts=2 sw=2
