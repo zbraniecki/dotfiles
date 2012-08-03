@@ -16,7 +16,7 @@ else:
     readline.parse_and_bind("tab: complete")
 
     # Enable a History
-    HISTFILE="%s/.pyhistory" % os.environ["HOME"]
+    HISTFILE="%s/.local/pyhistory" % os.environ["HOME"]
 
     # Read the existing history if there is one
     if os.path.exists(HISTFILE):
@@ -25,11 +25,8 @@ else:
     # Set maximum number of items that will be written to the history file
     readline.set_history_length(300)
 
-    def savehist():
-        readline.write_history_file(HISTFILE)
-
     import atexit
-    atexit.register(savehist)
+    atexit.register(readline.write_history_file, HISTFILE)
 finally:
     del rlcompleter
     del atexit
