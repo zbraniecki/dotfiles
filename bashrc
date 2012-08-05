@@ -21,7 +21,7 @@ fi
 # aliases =============================================================
 alias ls='ls -G'
 alias grep='grep --color=auto'
-alias mkve="mkvirtualenv --no-site-packages" 
+alias mkve="mkvirtualenv" 
 
 # additional scripts =================================================
 source ~/.local/extra/git-completion.bash

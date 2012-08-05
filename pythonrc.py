@@ -19,8 +19,10 @@ else:
     HISTFILE="%s/.local/pyhistory" % os.environ["HOME"]
 
     # Read the existing history if there is one
-    if os.path.exists(HISTFILE):
+    try:
         readline.read_history_file(HISTFILE)
+    except IOError:
+        pass
 
     # Set maximum number of items that will be written to the history file
     readline.set_history_length(300)

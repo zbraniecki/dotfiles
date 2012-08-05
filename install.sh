@@ -32,6 +32,7 @@ for i in `ls -1 $configs`; do
 	fi
     fi
     if [[ $i == extra ||
+          $i == pythonrc.py ||
           $i == gitignore_global ||
           $i == hgignore ]]; then
         dotfile=$HOME/.local/$i
