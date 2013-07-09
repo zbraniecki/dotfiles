@@ -26,8 +26,8 @@ alias mkve="mkvirtualenv"
 alias pmo="pastebin.py"
 
 # additional scripts =================================================
-source ~/.local/extra/git-completion.bash
-source ~/.local/extra/git-flow-completion.bash
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-prompt.sh
 
 # git completion =====================================================
 GIT_PS1_SHOWDIRTYSTATE=1
