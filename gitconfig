@@ -30,8 +30,10 @@
     co = checkout
     df = diff
     lg = log -p
-    l = log --graph --decorate --abbrev-commit --pretty=oneline
+    l = log --graph --decorate --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --date=relative
     ll = log --graph --decorate --abbrev-commit --pretty=oneline --all
     lll = log --graph --decorate --abbrev-commit
     llll = log --graph --decorate --abbrev-commit --all
     ls = ls-files
+[push]
+	default = matching
