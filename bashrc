@@ -15,13 +15,15 @@ fi
 
 if [ -d $HOME/.local/env ]; then
     export WORKON_HOME=~/.local/env
-    source_if_exists /usr/local/bin/virtualenvwrapper.sh
+    export VIRTUALENVWRAPPER_PYTHON=`which python`
+    source_if_exists /usr/local/share/python3/virtualenvwrapper.sh
 fi
 
 # aliases =============================================================
 alias ls='ls -G'
 alias grep='grep --color=auto'
 alias mkve="mkvirtualenv" 
+alias pmo="pastebin.py"
 
 # additional scripts =================================================
 source ~/.local/extra/git-completion.bash
