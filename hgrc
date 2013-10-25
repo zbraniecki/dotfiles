@@ -18,6 +18,7 @@ eol =
 hgext.bookmarks =
 hgext.imerge = !
 hgext.inotify = !
+merge-l10n = ~/projects/mozilla/axel/branch-l10n/merge_l10n.py
 
 [diff]
 git = 1
