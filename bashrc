@@ -16,7 +16,7 @@ fi
 if [ -d $HOME/.local/env ]; then
     export WORKON_HOME=~/.local/env
     export VIRTUALENVWRAPPER_PYTHON=`which python`
-    source_if_exists /usr/local/share/python3/virtualenvwrapper.sh
+    source_if_exists /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # aliases =============================================================
