@@ -22,7 +22,8 @@ fi
 # aliases =============================================================
 alias ls='ls -G'
 alias grep='grep --color=auto'
-alias mkve="mkvirtualenv" 
+alias mkve="mkvirtualenv --no-site-packages --python=/usr/local/bin/python3" 
+alias mkve2="mkvirtualenv --no-site-packages --python=/usr/bin/python2.7" 
 alias pmo="pastebin.py"
 
 # additional scripts =================================================

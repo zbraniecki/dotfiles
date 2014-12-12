@@ -1,5 +1,5 @@
 [user]
-    name = Zbigniew Braniecki
+    name = Zibi Braniecki
     email = gandalf@mozilla.com
 
 [core]
@@ -36,4 +36,4 @@
     llll = log --graph --decorate --abbrev-commit --all
     ls = ls-files
 [push]
-	default = matching
+	default = simple
