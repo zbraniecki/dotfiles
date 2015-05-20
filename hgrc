@@ -1,5 +1,5 @@
 [ui]
-username = Zbigniew Braniecki <gandalf@mozilla.com>
+username = Zibi Braniecki <gandalf@mozilla.com>
 merge = diffmerge
 editor = mvim --remote-tab-wait
 ignore = ~/.local/hgignore
@@ -38,3 +38,6 @@ vimdiff.args = -d $base $local $output $other +close +close
 
 [pager]
 pager = LESS='FSRX' less
+
+[paths]
+b2g-inbound = ssh://hg.mozilla.org/integration/b2g-inbound

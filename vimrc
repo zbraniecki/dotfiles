@@ -1,4 +1,5 @@
 call pathogen#infect()
+call pathogen#helptags()
 set laststatus=2 
 
 set nocompatible
@@ -87,7 +88,6 @@ imap <Tab> <C-P>
 imap jj <Esc>
 imap uu _
 imap hh ->
-imap aa @
 
 " File explorer
 nnoremap <F12> :Explore<CR>
@@ -184,3 +184,4 @@ nmap SSA :wa<CR>:mksession! ~/.vim/sessions/
 nmap SO :wa<CR>:so ~/.vim/sessions/
 
 au FileType javascript setl ts=2 et sts=2 sw=2
+au BufNewFile,BufRead *.rs set filetype=rust
