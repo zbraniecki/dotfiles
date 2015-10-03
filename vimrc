@@ -1,187 +1,156 @@
-call pathogen#infect()
-call pathogen#helptags()
-set laststatus=2 
-
-set nocompatible
-let mapleader = ","
-
-" UI
-set t_Co=256 " 256 colors
+" Based on http://dougblack.io/words/a-good-vimrc.html
+" Colors
 set background=dark
-colorscheme wombat256
-let g:molokai_original = 0
-if has("gui_running")
-    set guifont=Menlo:h12
-    set go-=T
-    set go-=rlRL
-    set fuoptions=background:Normal
-    colorscheme wombat
-endif
+colorscheme wombat
+"set transparency=5
+syntax enable
 
-syntax on
+" Spaces & Tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" UI Config
 set number
-set splitbelow splitright
-set cursorline
 set showcmd
+set cursorline
+filetype indent on
+set wildmenu
+set lazyredraw
+set showmatch
+
+" Ruler
 set ruler
 set textwidth=79
-set formatoptions=cqrnw1
+"set formatoptions=cqrnw1
 set colorcolumn=80
 " Highlight text in 75th-79th columns and after 79th column in Python
-au BufWinEnter *.py let w:m1=matchadd('Search', '\%<80v.\%>75v', -1)
-au BufWinEnter *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
+au BufWinEnter *.* let w:m1=matchadd('Search', '\%<80v.\%>75v', -1)
+au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
+
+" Leader Shortcuts
+let mapleader=","
+inoremap jk <esc>
+nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>s :mksession<CR>
+nnoremap <leader>a :Ag
+
+" Folding
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+nnoremap <space> za
+set foldmethod=indent
+
+" Movement
+nnoremap j gj
+nnoremap k gk
+nnoremap B ^
+nnoremap E $
+nnoremap $ <nop>
+nnoremap ^ <nop>
+nnoremap gV `[v`]
 
 " Searching
 set incsearch
 set hlsearch
-set showmatch
-set ignorecase " Ignore case when searching
-set smartcase " Ignore case when searching lowercase
-nnoremap / /\v
-vnoremap / /\v
-set gdefault
-nnoremap <leader><space> :nohlsearch<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+nnoremap <leader><space> :nohlsearch<CR>
 
+" CtrlP
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-" Invisible characters
-if has("gui_running")
-    set listchars=trail:⋅,tab:▸\ ,eol:¬
+" Launch Config
+call pathogen#infect()
+
+" Tmux
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
-    set listchars=trail:.,tab:>-,eol:$
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-set nolist
-noremap <leader>i :set list!<CR>
-" Toggle invisible chars
+
+" Autogroups
+augroup configgroup
+    autocmd!
+    autocmd VimEnter * highlight clear SignColumn
+"    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+"                \:call <SID>StripTrailingWhitespaces()
+    autocmd FileType java setlocal noexpandtab
+    autocmd FileType java setlocal list
+    autocmd FileType java setlocal listchars=tab:+\ ,eol:-
+    autocmd FileType java setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType php setlocal expandtab
+    autocmd FileType php setlocal list
+    autocmd FileType php setlocal listchars=tab:+\ ,eol:-
+    autocmd FileType php setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType ruby setlocal shiftwidth=2
+    autocmd FileType ruby setlocal softtabstop=2
+    autocmd FileType ruby setlocal commentstring=#\ %s
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python setlocal tabstop=4
+    autocmd FileType python setlocal shiftwidth=4
+    autocmd FileType python setlocal softtabstop=4
+    autocmd BufEnter *.cls setlocal filetype=java
+    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
+augroup END
+
+autocmd BufNewFile,BufRead *.rs set filetype=rust ts=2 et sts=2 sw=2
+
+" Backups
+set backup
+set backupdir=~/.local/bkp/vim
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.local/bkp/vim/swap
+set writebackup
+
+" Custom Functions
+" toggle between number and relativenumber
+function! ToggleNumber()
+    if(&relativenumber == 1)
+        set norelativenumber
+        set number
+    else
+        set relativenumber
+    endif
+endfunc
+
+" strips trailing whitespace at the end of files. this
+" is called on buffer write in the autogroup above.
+function! <SID>StripTrailingWhitespaces()
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" UI
+
+"set splitbelow splitright
+
+" Searching
+"set ignorecase " Ignore case when searching
+"set smartcase " Ignore case when searching lowercase
+"nnoremap / /\v
+"vnoremap / /\v
+"set gdefault
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 " Coding style
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set nosmartindent
-
-" Mappings ********************************************************************
- 
-" easier commands
-nnoremap ; :
-
-" home row
-map <C-H> :tabprevious<CR>
-map <C-L> :tabnext<CR>
-map <C-J> <C-D>
-map <C-K> <C-U>
-nnoremap j gj
-nnoremap k gk
-
-" don't open help
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-
-" autocomplete
-inoremap <C-L> <Tab>
-imap <Tab> <C-P>
-
-imap jj <Esc>
-imap uu _
-imap hh ->
-
-" File explorer
-nnoremap <F12> :Explore<CR>
-nnoremap <C-T> :tabnew<CR>
-
-" Insert New Line
-nnoremap <S-Enter> O<ESC>
-nnoremap <Enter> o<ESC>
-
-" Highlight text after 79th column
-nnoremap <F10> :match ErrorMsg '\%>79v.\+'<CR>
-
-" Set a PuDB breakpoint
-nnoremap <F11> ofrom pudb import set_trace; set_trace()<ESC>
-
-" select lines that were just pasted
-nnoremap <leader>v V`]
 
 
-" Directories *****************************************************************
-" Setup backup location and enable
-set backupdir=~/.local/bkp/vim
-set backup
-set undofile
-
-" Set Swap directory
-set directory=~/.local/bkp/vim/swap
-
-" Misc ************************************************************************
-set backspace=indent,eol,start
-set matchpairs+=<:>
-
-" Functions *******************************************************************
-"
-let s:editing_text = 0
-function! Toggle_text_editing()
-    if s:editing_text
-        " turn off text editing
-        let s:editing_text = 0
-        setlocal formatoptions-=ta
-        setlocal relativenumber
-        setlocal autoindent
-        setlocal textwidth=79
-        setlocal colorcolumn=80
-        if has("gui_running")
-            colorscheme wombat
-        else
-            colorscheme wombat256
-        endif
-    else
-        " turn on text editing
-        let s:editing_text = 1
-        setlocal formatoptions+=ta
-        setlocal norelativenumber
-        setlocal textwidth=71
-        setlocal colorcolumn=72
-        if has("gui_running")
-            colorscheme freya
-        else
-            colorscheme freya256
-        endif
-    endif
-    return
-endfunction
-nnoremap <leader>t :call Toggle_text_editing()<CR>
-
-let s:is_fullscreen = 0
-function! Toggle_fullscreen()
-    if s:is_fullscreen
-        " turn fullscreen off
-        let s:is_fullscreen = 0
-        set nofullscreen
-        redraw!
-    else
-        " turn fullscreen on
-        let s:is_fullscreen = 1
-        set fullscreen
-        redraw!
-    endif
-endfunction
-nnoremap <leader>fu :call Toggle_fullscreen()<CR>
-
-" Crontab doesn't like the way Vim does backups *******************************
-if $VIM_CRONTAB == "true"
-    set nobackup
-    set nowritebackup
-endif
-
-" Filetype-specific ***********************************************************
-au BufRead sup.* set ft=mail
-au BufRead sup.* call Toggle_text_editing()
-
-nmap SSA :wa<CR>:mksession! ~/.vim/sessions/
-nmap SO :wa<CR>:so ~/.vim/sessions/
-
-au FileType javascript setl ts=2 et sts=2 sw=2
-au BufNewFile,BufRead *.rs set filetype=rust
