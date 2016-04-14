@@ -1,7 +1,7 @@
 " Based on http://dougblack.io/words/a-good-vimrc.html
 " Colors
 set background=dark
-colorscheme wombat
+colorscheme wombat256
 "set transparency=5
 syntax enable
 

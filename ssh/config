@@ -12,6 +12,6 @@ Host github.com
     User git
     Port 22
     Hostname github.com
-    IdentityFile ~/.ssh/id_dsa
+    IdentityFile ~/.ssh/id_ed25519_2015-10-17
     TCPKeepAlive yes
     IdentitiesOnly yes
