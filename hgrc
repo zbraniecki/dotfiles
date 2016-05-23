@@ -1,6 +1,6 @@
 [ui]
 username = Zibi Braniecki <gandalf@mozilla.com>
-editor = mvim --remote-tab-wait
+editor = nvim
 ignore = ~/.local/hgignore
 merge = vimdiff
 
