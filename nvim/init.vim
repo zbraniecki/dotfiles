@@ -23,7 +23,8 @@ set wildmenu
 set showmatch
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 &&
+  \ exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Searching
 set incsearch
@@ -64,22 +65,29 @@ nnoremap <leader>a :Ag
 map <C-n> :NERDTreeToggle<CR>
 
 " Launch Config
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/vim-github-dashboard'
+"Plug 'junegunn/vim-github-dashboard'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'on': [] }
 Plug 'rust-lang/rust.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 call plug#end()
 
@@ -131,10 +139,20 @@ au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 " YouCompleteMe
 
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('YouCompleteMe')
+                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+augroup END
+
 let g:ycm_rust_src_path = '/home/zbraniecki/projects/rust/src'
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
+
+" tern_for_vim
+
+let g:tern_show_argument_hints='on_hold'
 
 " Syntastic
 
@@ -144,6 +162,6 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
