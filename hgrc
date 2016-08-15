@@ -3,6 +3,7 @@ username = Zibi Braniecki <gandalf@mozilla.com>
 editor = nvim
 ignore = ~/.local/hgignore
 merge = vimdiff
+interface = curses
 
 [extensions]
 hgext.graphlog = 
@@ -26,6 +27,8 @@ firefoxtree = ~/.mozbuild/version-control-tools/hgext/firefoxtree
 push-to-try = ~/.mozbuild/version-control-tools/hgext/push-to-try
 mqext = ~/.mozbuild/version-control-tools/hgext/mqext
 qimportbz = ~/.mozbuild/version-control-tools/hgext/qimportbz
+blackbox = 
+purge = 
 
 [diff]
 git = 1
@@ -35,7 +38,7 @@ unified = 8
 [defaults]
 diff = -p -U 8
 commit = -v
-qnew = -U
+qnew = -Ue
 
 [extdiff]
 cmd.diffmerge = /usr/bin/diffmerge.sh
@@ -46,6 +49,11 @@ vimdiff.args = -d $base $local $output $other +close +close
 
 [pager]
 pager = LESS='FSRX' less
+attend-help = true
+attend-incoming = true
+attend-outgoing = true
+attend-status = true
+attend-wip = true
 
 [paths]
 b2g-inbound = ssh://hg.mozilla.org/integration/b2g-inbound

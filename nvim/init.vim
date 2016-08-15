@@ -26,6 +26,14 @@ set showmatch
 autocmd bufenter * if (winnr("$") == 1 &&
   \ exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Leader Shortcuts
+let mapleader=","
+inoremap jk <esc>
+nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>s :mksession<CR>
+nnoremap <leader>a :Ag
+map <C-n> :NERDTreeToggle<CR>
+
 " Searching
 set incsearch
 set hlsearch
@@ -56,14 +64,6 @@ nnoremap gV `[v`]
 set whichwrap=<,>,[,],h,l
 com! -nargs=1 -complete=dir Ncd NERDTree | cd <args> |NERDTreeCWD
 
-" Leader Shortcuts
-let mapleader=","
-inoremap jk <esc>
-nnoremap <leader>u :GundoToggle<CR>
-nnoremap <leader>s :mksession<CR>
-nnoremap <leader>a :Ag
-map <C-n> :NERDTreeToggle<CR>
-
 " Launch Config
 
 function! DoRemote(arg)
@@ -73,21 +73,21 @@ endfunction
 set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-sensible'
-Plug 'junegunn/vim-easy-align'
+"Plug 'tpope/vim-sensible'
+"Plug 'junegunn/vim-easy-align'
 "Plug 'junegunn/vim-github-dashboard'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'on': [] }
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 call plug#end()
 
@@ -152,13 +152,13 @@ set completeopt-=preview
 
 " tern_for_vim
 
-let g:tern_show_argument_hints='on_hold'
+"let g:tern_show_argument_hints='on_hold'
 
 " Syntastic
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
