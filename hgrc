@@ -14,11 +14,10 @@ progress =
 pager = 
 transplant = 
 rebase = 
-eol = 
 hgext.bookmarks = 
 hgext.imerge = !
 hgext.inotify = !
-merge-l10n = ~/projects/mozilla/users/ahecht/branch-l10n/merge_l10n.py
+#merge-l10n = ~/projects/mozilla/users/ahecht/branch-l10n/merge_l10n.py
 histedit = 
 reviewboard = /home/zbraniecki/.mozbuild/version-control-tools/hgext/reviewboard/client.py
 bzexport = ~/.mozbuild/version-control-tools/hgext/bzexport
@@ -29,6 +28,7 @@ mqext = ~/.mozbuild/version-control-tools/hgext/mqext
 qimportbz = ~/.mozbuild/version-control-tools/hgext/qimportbz
 blackbox = 
 purge = 
+fsmonitor =
 
 [diff]
 git = 1
@@ -57,6 +57,7 @@ attend-wip = true
 
 [paths]
 b2g-inbound = ssh://hg.mozilla.org/integration/b2g-inbound
+review = ssh://reviewboard-hg.mozilla.org/autoreview
 [experimental]
 clonebundles = true
 [alias]
@@ -70,3 +71,5 @@ mqcommit = auto
 [bugzilla]
 username = gandalf@aviary.pl
 apikey = oIUp5ciUGjn1u6yMxFYyLwjMYR6YxVtCBgCAmHCT
+[mozilla]
+ircnick = gandalf

@@ -73,21 +73,22 @@ endfunction
 set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
-"Plug 'tpope/vim-sensible'
-"Plug 'junegunn/vim-easy-align'
-"Plug 'junegunn/vim-github-dashboard'
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-github-dashboard'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'on': [] }
-"Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -149,16 +150,20 @@ let g:ycm_rust_src_path = '/home/zbraniecki/projects/rust/src'
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 " tern_for_vim
 
-"let g:tern_show_argument_hints='on_hold'
+let g:tern_show_argument_hints='on_hold'
 
 " Syntastic
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
