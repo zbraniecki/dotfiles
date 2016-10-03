@@ -16,7 +16,6 @@ set autoindent
 " UI Config
 set backspace=indent,eol,start
 set number
-set relativenumber
 set showcmd
 set cursorline
 set wildmenu
