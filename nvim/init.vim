@@ -62,6 +62,18 @@ nnoremap ^ <nop>
 nnoremap gV `[v`]
 set whichwrap=<,>,[,],h,l
 com! -nargs=1 -complete=dir Ncd NERDTree | cd <args> |NERDTreeCWD
+vnoremap < <gv
+vnoremap > >gv
+
+" tabs
+" nnoremap <C-S-tab> :tabprevious<CR>
+" nnoremap <C-tab>   :tabnext<CR>
+" nnoremap <C-t>     :tabnew<CR>
+" nnoremap <C-w>     :tabclose<CR>
+" inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+" inoremap <C-tab>   <Esc>:tabnext<CR>i
+" inoremap <C-t>     <Esc>:tabnew<CR>
+" inoremap <C-w>     :tabclose<CR>
 
 " Launch Config
 
@@ -119,7 +131,7 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal softtabstop=2
 augroup END
 
-autocmd BufNewFile,BufRead *.rs set filetype=rust ts=2 et sts=2 sw=2
+autocmd BufNewFile,BufRead *.rs set filetype=rust ts=4 et sts=4 sw=4
 
 " Backups
 set backup
@@ -169,3 +181,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+
+" Auto-pairs
+let g:AutoPairsMultilineClose = 0
+let g:AutoPairsFlyMode = 0

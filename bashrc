@@ -77,9 +77,9 @@ bash_prompt() {
   local ORANGE="\[\e[00;33m\]"
 
   function getsshstatus() {
-    if [[ $(ssh-add -l) != "The agent has no identities." ]]; then
-      tput dim
-      tput bold
+    if [ $(id -u) != 0 ] && [[ $(ssh-add -l) != "The agent has no identities." ]]; then
+        tput dim
+        tput bold
     fi
   }
 
@@ -142,7 +142,7 @@ fi
 if [ -d $HOME/.local/env ]; then
   export WORKON_HOME=~/.local/env
   export VIRTUALENVWRAPPER_PYTHON=`which python`
-  source_if_exists /usr/local/bin/virtualenvwrapper.sh
+  source_if_exists ~/.local/bin/virtualenvwrapper.sh
 fi
 
 export NVM_DIR="$HOME/.nvm"
