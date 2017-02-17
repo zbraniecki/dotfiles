@@ -100,6 +100,7 @@ Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'tpope/vim-commentary'
+Plug 'kh3phr3n/python-syntax'
 
 call plug#end()
 
@@ -141,6 +142,8 @@ set directory=~/.local/bkp/vim/swap
 set writebackup
 
 " Custom Functions
+
+let python_self_cls_highlight = 1
 
 " Ruler
 set ruler

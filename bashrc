@@ -69,6 +69,16 @@ function start_agent {
 
 export VCPROMPT_FORMAT=" (%b %u%%%m)"
 
+if [ -f "${SSH_ENV}" ]; then
+  . "${SSH_ENV}" > /dev/null
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+      start_agent;
+  }
+else
+  start_agent;
+fi
+
+unset start_agent
 
 bash_prompt() {
   local RESET=$(tput sgr0)
@@ -110,6 +120,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias hg=chg
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -119,34 +130,28 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 source ~/.local/extra/utils.bash
 
 export EDITOR=nvim
 export PYTHONSTARTUP=~/.local/pythonrc.py
 
+export PATH=$HOME/.cargo/bin:/usr/bin/core_perl/:$PATH
+
 if [ -d $HOME/.local/bin ]; then
-  export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+  export PATH=$HOME/.local/bin:$PATH
 fi
 
 if [ -d $HOME/.local/env ]; then
   export WORKON_HOME=~/.local/env
   export VIRTUALENVWRAPPER_PYTHON=`which python`
-  source_if_exists ~/.local/bin/virtualenvwrapper.sh
+  source_if_exists /usr/bin/virtualenvwrapper.sh
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source /usr/share/nvm/init-nvm.sh
 
 # aliases =============================================================
 alias ls='ls -G'
@@ -161,13 +166,4 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
-if [ -f "${SSH_ENV}" ]; then
-  . "${SSH_ENV}" > /dev/null
-  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-      start_agent;
-  }
-else
-  start_agent;
-fi
-
-unset start_agent
+. /etc/profile.d/vte.sh
