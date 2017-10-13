@@ -13,14 +13,16 @@ pager =
 firefoxtree = /home/zbraniecki/.mozbuild/version-control-tools/hgext/firefoxtree
 reviewboard = /home/zbraniecki/.mozbuild/version-control-tools/hgext/reviewboard/client.py
 push-to-try = /home/zbraniecki/.mozbuild/version-control-tools/hgext/push-to-try
-absorb = /home/zbraniecki/projects/hg-experimental/hgext3rd/absorb
+#pushlog = /home/zbraniecki/.mozbuild/version-control-tools/hgext/pushlog
 prompt = /home/zbraniecki/projects/hg-prompt/prompt.py
+absorb = /home/zbraniecki/projects/hg-experimental/hgext3rd/absorb
 smartlog = /home/zbraniecki/projects/hg-experimental/hgext3rd/smartlog.py
-fbamend = /home/zbraniecki/projects/hg-experimental/hgext3rd/fbamend.py
+fbamend = /home/zbraniecki/projects/hg-experimental/hgext3rd/fbamend
+drop = /home/zbraniecki/projects/hg-experimental/hgext3rd/drop.py
 purge = 
 color = 
+strip = 
 fsmonitor = 
-strip =
 [pager]
 pager = LESS=FRSXQ less
 attend-help = true
@@ -59,3 +61,6 @@ username = gandalf@aviary.pl
 apikey = oIUp5ciUGjn1u6yMxFYyLwjMYR6YxVtCBgCAmHCT
 [paths]
 review = https://reviewboard-hg.mozilla.org/autoreview
+
+[fbamend]
+userestack = true

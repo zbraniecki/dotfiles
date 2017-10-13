@@ -20,6 +20,7 @@ set showcmd
 set cursorline
 set wildmenu
 set showmatch
+set inccommand=nosplit
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 &&
@@ -98,9 +99,9 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'tpope/vim-commentary'
 Plug 'kh3phr3n/python-syntax'
+Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 
@@ -147,10 +148,10 @@ let python_self_cls_highlight = 1
 
 " Ruler
 set ruler
-set colorcolumn=80
+set colorcolumn=90
 " Highlight text in 75th-79th columns and after 79th column in Python
-au BufWinEnter *.* let w:m1=matchadd('Search', '\%<80v.\%>75v', -1)
-au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
+au BufWinEnter *.* let w:m1=matchadd('Search', '\%<90v.\%>85v', -1)
+au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>89v.\+', -1)
 
 " YouCompleteMe
 
@@ -188,3 +189,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Auto-pairs
 let g:AutoPairsMultilineClose = 0
 let g:AutoPairsFlyMode = 0
+
+" JSDoc
+let g:jsdoc_enable_es6 = 1

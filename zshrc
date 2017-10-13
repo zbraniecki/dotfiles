@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:/usr/local/bin:/usr/lib/icecream/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/zbraniecki/.oh-my-zsh
@@ -57,6 +57,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+unsetopt share_history
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -84,6 +86,13 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#alias hg=chg
+alias ls=exa
+alias fx="nohup /home/zbraniecki/.local/bin/firefox </dev/null &>/dev/null &"
 
-export MOZ_ALLOW_GTK_DARK_THEME=true
+export RUSTC_WRAPPER=sccache
 source /usr/share/nvm/init-nvm.sh
+
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
