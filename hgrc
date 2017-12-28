@@ -23,6 +23,7 @@ purge =
 color = 
 strip = 
 fsmonitor = 
+churn =
 [pager]
 pager = LESS=FRSXQ less
 attend-help = true

@@ -93,6 +93,8 @@ alias fx="nohup /home/zbraniecki/.local/bin/firefox </dev/null &>/dev/null &"
 export RUSTC_WRAPPER=sccache
 source /usr/share/nvm/init-nvm.sh
 
+export NODE_ICU_DATA=/home/zbraniecki/.nvm/versions/node/v9.2.1/lib/node_modules/full-icu
+
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
