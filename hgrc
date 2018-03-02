@@ -9,36 +9,31 @@ showfunc = true
 histedit = 
 rebase = 
 blackbox = 
-pager = 
 firefoxtree = /home/zbraniecki/.mozbuild/version-control-tools/hgext/firefoxtree
 reviewboard = /home/zbraniecki/.mozbuild/version-control-tools/hgext/reviewboard/client.py
 push-to-try = /home/zbraniecki/.mozbuild/version-control-tools/hgext/push-to-try
 #pushlog = /home/zbraniecki/.mozbuild/version-control-tools/hgext/pushlog
 prompt = /home/zbraniecki/projects/hg-prompt/prompt.py
-absorb = /home/zbraniecki/projects/hg-experimental/hgext3rd/absorb
-smartlog = /home/zbraniecki/projects/hg-experimental/hgext3rd/smartlog.py
-fbamend = /home/zbraniecki/projects/hg-experimental/hgext3rd/fbamend
-drop = /home/zbraniecki/projects/hg-experimental/hgext3rd/drop.py
+
+#hg experimental
+absorb = 
+smartlog = 
+#fbamend = 
+drop = 
+backups = 
+#uncommit = 
+
 purge = 
-color = 
 strip = 
 fsmonitor = 
-churn =
+churn = 
+evolve = /home/zbraniecki/.mozbuild/evolve/hgext3rd/evolve
 [pager]
 pager = LESS=FRSXQ less
-attend-help = true
-attend-incoming = true
-attend-outgoing = true
-attend-status = true
-attend-wip = true
-attend-sl = true
-attend-smartlog = true
-attend-log = true
-attend-l = true
 [alias]
 wip = log --graph --rev=wip --template=wip
 sl = smartlog --template "{shortest(node)}  {author|user}  {bookmarks % '{ifeq(bookmark, current, label(\"yellow\", \" {bookmark}*\"), label(\"green\", \" {bookmark}\"))}'} {ifeq(branch, 'default', '', label(\"bold\", branch))}\n{desc|firstline}\n\n"
-amend = amend --rebase
+#amend = amend --rebase
 l = log -f
 [revsetalias]
 wip = (parents(not public()) or not public() or . or (head() and branch(default))) and (not obsolete() or unstable()^) and not closed() and not (fxheads() - date(-90))

@@ -26,6 +26,11 @@ set inccommand=nosplit
 autocmd bufenter * if (winnr("$") == 1 &&
   \ exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Autorefresh files changed from outside
+set autoread
+au FocusGained * :checktime
+
+
 " Leader Shortcuts
 let mapleader=","
 inoremap jk <esc>
@@ -76,6 +81,9 @@ vnoremap > >gv
 " inoremap <C-t>     <Esc>:tabnew<CR>
 " inoremap <C-w>     :tabclose<CR>
 
+" copy & paste
+set clipboard^=unnamed,unnamedplus
+
 " Launch Config
 
 function! DoRemote(arg)
@@ -102,6 +110,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'kh3phr3n/python-syntax'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
