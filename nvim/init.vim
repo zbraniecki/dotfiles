@@ -1,9 +1,4 @@
 " Based on http://dougblack.io/words/a-good-vimrc.html
-" Colors
-set background=dark
-colorscheme wombat256
-syntax enable
-
 " Spaces & Tabs
 set tabstop=2
 set softtabstop=2
@@ -95,24 +90,37 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/vim-github-dashboard'
+" Plug 'junegunn/vim-github-dashboard'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'on': [] }
 Plug 'rust-lang/rust.vim'
-Plug 'marijnh/tern_for_vim'
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'marijnh/tern_for_vim'
+" Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/syntastic'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'scrooloose/syntastic'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
-Plug 'kh3phr3n/python-syntax'
+" Plug 'kh3phr3n/python-syntax'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'posva/vim-vue'
+Plug 'projectfluent/fluent.vim'
+" Plug 'posva/vim-vue'
+" Plug 'jbgutierrez/vim-better-comments'
+Plug 'haishanh/night-owl.vim'
 
 call plug#end()
+
+" Colors
+if (has("termguicolors"))
+ set termguicolors
+endif
+set background=dark
+" colorscheme night-owl
+colorscheme wombat256
+syntax enable
+
 
 " Autogroups
 augroup configgroup
@@ -157,10 +165,10 @@ let python_self_cls_highlight = 1
 
 " Ruler
 set ruler
-set colorcolumn=90
+" set colorcolumn=90
 " Highlight text in 75th-79th columns and after 79th column in Python
-au BufWinEnter *.* let w:m1=matchadd('Search', '\%<90v.\%>85v', -1)
-au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>89v.\+', -1)
+" au BufWinEnter *.* let w:m1=matchadd('Search', '\%<90v.\%>85v', -1)
+" au BufWinEnter *.* let w:m2=matchadd('ErrorMsg', '\%>89v.\+', -1)
 
 " YouCompleteMe
 

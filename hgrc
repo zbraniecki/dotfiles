@@ -2,6 +2,7 @@
 username = Zibi Braniecki <zbraniecki@mozilla.com>
 editor = nvim
 interface = curses
+tweakdefaults = true
 [diff]
 git = true
 showfunc = true
@@ -9,34 +10,23 @@ showfunc = true
 histedit = 
 rebase = 
 blackbox = 
-firefoxtree = /home/zbraniecki/.mozbuild/version-control-tools/hgext/firefoxtree
-reviewboard = /home/zbraniecki/.mozbuild/version-control-tools/hgext/reviewboard/client.py
-push-to-try = /home/zbraniecki/.mozbuild/version-control-tools/hgext/push-to-try
-#pushlog = /home/zbraniecki/.mozbuild/version-control-tools/hgext/pushlog
-prompt = /home/zbraniecki/projects/hg-prompt/prompt.py
-
-#hg experimental
 absorb = 
-smartlog = 
-#fbamend = 
-drop = 
-backups = 
-#uncommit = 
+firefoxtree = /home/zbraniecki/.mozbuild/version-control-tools/hgext/firefoxtree
+push-to-try = /home/zbraniecki/.mozbuild/version-control-tools/hgext/push-to-try
+phabricator = /home/zbraniecki/projects/hgext/phabricator.py
 
-purge = 
+#purge = 
 strip = 
 fsmonitor = 
-churn = 
 evolve = /home/zbraniecki/.mozbuild/evolve/hgext3rd/evolve
 [pager]
 pager = LESS=FRSXQ less
 [alias]
 wip = log --graph --rev=wip --template=wip
 sl = smartlog --template "{shortest(node)}  {author|user}  {bookmarks % '{ifeq(bookmark, current, label(\"yellow\", \" {bookmark}*\"), label(\"green\", \" {bookmark}\"))}'} {ifeq(branch, 'default', '', label(\"bold\", branch))}\n{desc|firstline}\n\n"
-#amend = amend --rebase
 l = log -f
 [revsetalias]
-wip = (parents(not public()) or not public() or . or (head() and branch(default))) and (not obsolete() or unstable()^) and not closed() and not (fxheads() - date(-90))
+wip = (parents(not public()) or not public() or . or (head() and branch(default))) and (not obsolete() or orphan()^) and not closed() and not (fxheads() - date(-90))
 [templates]
 wip = '{label("wip.branch", if(branches,"{branches} "))}{label(ifeq(graphnode,"x","wip.obsolete","wip.{phase}"),"{rev}:{node|short}")}{label("wip.user", " {author|user}")}{label("wip.tags", if(tags," {tags}"))}{label("wip.tags", if(fxheads," {fxheads}"))}{if(bookmarks," ")}{label("wip.bookmarks", if(bookmarks,bookmarks))}{label(ifcontains(rev, revset("parents()"), "wip.here"), " {desc|firstline}")}'
 [color]
@@ -58,5 +48,11 @@ apikey = oIUp5ciUGjn1u6yMxFYyLwjMYR6YxVtCBgCAmHCT
 [paths]
 review = https://reviewboard-hg.mozilla.org/autoreview
 
-[fbamend]
-userestack = true
+[phabricator]
+url = https://phabricator.services.mozilla.com/
+callsign = MOZILLACENTRAL
+
+[auth]
+mozilla.schemes = https
+mozilla.prefix = phabricator.services.mozilla.com
+mozilla.phabtoken = cli-ntvbo5ctso33tt5hgxcapa5iq7ma 

@@ -101,12 +101,14 @@ ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
-
+setopt PROMPT_SUBST
+source ~/projects/hg-experimental/scripts/scm-prompt.sh
 source $ZSH/oh-my-zsh.sh
 
 alias fx="nohup /home/zbraniecki/.local/bin/firefox </dev/null &>/dev/null &"
 alias ls="exa"
-alias hg="chg"
 source /usr/share/nvm/init-nvm.sh
 
 unsetopt share_history
+
+export USE_SCHEDULER="10.251.25.72"
