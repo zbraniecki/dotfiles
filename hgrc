@@ -11,22 +11,27 @@ histedit =
 rebase = 
 blackbox = 
 absorb = 
+progress = 
 firefoxtree = /home/zbraniecki/.mozbuild/version-control-tools/hgext/firefoxtree
 push-to-try = /home/zbraniecki/.mozbuild/version-control-tools/hgext/push-to-try
+pushlog = /home/zbraniecki/.mozbuild/version-control-tools/hgext/pushlog
 phabricator = /home/zbraniecki/projects/hgext/phabricator.py
 
 #purge = 
 strip = 
 fsmonitor = 
 evolve = /home/zbraniecki/.mozbuild/evolve/hgext3rd/evolve
+format-source = /home/zbraniecki/.mozbuild/version-control-tools/hgext/format-source
 [pager]
 pager = LESS=FRSXQ less
 [alias]
 wip = log --graph --rev=wip --template=wip
 sl = smartlog --template "{shortest(node)}  {author|user}  {bookmarks % '{ifeq(bookmark, current, label(\"yellow\", \" {bookmark}*\"), label(\"green\", \" {bookmark}\"))}'} {ifeq(branch, 'default', '', label(\"bold\", branch))}\n{desc|firstline}\n\n"
 l = log -f
+smart-annotate = annotate -w --skip ignored_changesets
 [revsetalias]
 wip = (parents(not public()) or not public() or . or (head() and branch(default))) and (not obsolete() or orphan()^) and not closed() and not (fxheads() - date(-90))
+ignored_changesets = desc("ignore-this-changeset") or extdata(get_ignored_changesets)
 [templates]
 wip = '{label("wip.branch", if(branches,"{branches} "))}{label(ifeq(graphnode,"x","wip.obsolete","wip.{phase}"),"{rev}:{node|short}")}{label("wip.user", " {author|user}")}{label("wip.tags", if(tags," {tags}"))}{label("wip.tags", if(fxheads," {fxheads}"))}{if(bookmarks," ")}{label("wip.bookmarks", if(bookmarks,bookmarks))}{label(ifcontains(rev, revset("parents()"), "wip.here"), " {desc|firstline}")}'
 [color]
@@ -55,4 +60,6 @@ callsign = MOZILLACENTRAL
 [auth]
 mozilla.schemes = https
 mozilla.prefix = phabricator.services.mozilla.com
-mozilla.phabtoken = cli-ntvbo5ctso33tt5hgxcapa5iq7ma 
+mozilla.phabtoken = cli-ntvbo5ctso33tt5hgxcapa5iq7ma
+[extdata]
+get_ignored_changesets = shell:cat `hg root`/.hg-annotate-ignore-revs 2> /dev/null || true

@@ -105,10 +105,12 @@ setopt PROMPT_SUBST
 source ~/projects/hg-experimental/scripts/scm-prompt.sh
 source $ZSH/oh-my-zsh.sh
 
-alias fx="nohup /home/zbraniecki/.local/bin/firefox </dev/null &>/dev/null &"
 alias ls="exa"
+alias cat="bat"
 source /usr/share/nvm/init-nvm.sh
 
 unsetopt share_history
 
 export USE_SCHEDULER="10.251.25.72"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
