@@ -49,7 +49,7 @@ graphshorten = true
 ircnick = gandalf
 [bugzilla]
 username = gandalf@aviary.pl
-apikey = oIUp5ciUGjn1u6yMxFYyLwjMYR6YxVtCBgCAmHCT
+# apikey = 
 [paths]
 review = https://reviewboard-hg.mozilla.org/autoreview
 
@@ -60,6 +60,6 @@ callsign = MOZILLACENTRAL
 [auth]
 mozilla.schemes = https
 mozilla.prefix = phabricator.services.mozilla.com
-mozilla.phabtoken = cli-ntvbo5ctso33tt5hgxcapa5iq7ma
+# mozilla.phabtoken = 
 [extdata]
 get_ignored_changesets = shell:cat `hg root`/.hg-annotate-ignore-revs 2> /dev/null || true
